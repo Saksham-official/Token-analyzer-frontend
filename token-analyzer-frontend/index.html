@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Cost Analyzer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="url(#gradient)" />
+                    <path d="M16 8L20 12H18V20H14V12H12L16 8Z" fill="white" />
+                    <path d="M10 22H22V24H10V22Z" fill="white" />
+                    <defs>
+                        <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32">
+                            <stop offset="0%" stop-color="#00d4ff" />
+                            <stop offset="100%" stop-color="#0066ff" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <h1>Token Cost Analyzer</h1>
+            </div>
+            <p class="subtitle">Analyze token usage and costs in real-time</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Section -->
+            <section class="input-section">
+                <div class="card">
+                    <label for="prompt-input" class="label">Enter Your Prompt</label>
+                    <textarea id="prompt-input" class="prompt-input" placeholder="Type or paste your prompt here..."
+                        rows="6"></textarea>
+                    <div class="input-footer">
+                        <span class="char-counter" id="char-counter">0 characters</span>
+                        <button id="analyze-btn" class="analyze-btn">
+                            <span class="btn-text">Analyze</span>
+                            <svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M10 4L10 16M10 16L6 12M10 16L14 12" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Loading State -->
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>Analyzing your prompt...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="error" class="error-card hidden">
+                <div class="error-icon">⚠️</div>
+                <h3>Error</h3>
+                <p id="error-message"></p>
+            </div>
+
+            <!-- Results Section -->
+            <section id="results" class="results-section hidden">
+                <!-- Token Metrics -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon">📥</div>
+                        <div class="metric-content">
+                            <span class="metric-label">Input Tokens</span>
+                            <span class="metric-value" id="input-tokens">0</span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">📤</div>
+                        <div class="metric-content">
+                            <span class="metric-label">Output Tokens</span>
+                            <span class="metric-value" id="output-tokens">0</span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">📊</div>
+                        <div class="metric-content">
+                            <span class="metric-label">Total Tokens</span>
+                            <span class="metric-value" id="total-tokens">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cost Breakdown -->
+                <div class="card cost-card">
+                    <h2 class="card-title">💰 Cost Breakdown</h2>
+                    <div class="cost-grid">
+                        <div class="cost-item">
+                            <span class="cost-label">Input Cost</span>
+                            <span class="cost-value" id="input-cost">$0.000000</span>
+                        </div>
+                        <div class="cost-item">
+                            <span class="cost-label">Output Cost</span>
+                            <span class="cost-value" id="output-cost">$0.000000</span>
+                        </div>
+                        <div class="cost-item total">
+                            <span class="cost-label">Total Cost</span>
+                            <span class="cost-value" id="total-cost">$0.000000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Efficiency Insights -->
+                <div class="card insights-card">
+                    <h2 class="card-title">💡 Efficiency Insights</h2>
+                    <ul id="insights-list" class="insights-list"></ul>
+                </div>
+
+                <!-- Generated Response -->
+                <div class="card response-card">
+                    <h2 class="card-title">✨ Generated Response</h2>
+                    <div class="response-content" id="response-text"></div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Powered by Google Gemini API • <a href="https://token-cost-analyzer.onrender.com/docs"
+                    target="_blank">API Docs</a></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
